@@ -1,0 +1,13 @@
+{
+    "name": "app-infra",
+    "main": "index.ts",
+    "devDependencies": {
+        "@types/node": "^18.19.78",
+        "typescript": "^5.8.2"
+    },
+    "dependencies": {
+        "@pulumi/aws": "^6.70.0",
+        "@pulumi/awsx": "^2.0.2",
+        "@pulumi/pulumi": "^3.113.0"
+    }
+}

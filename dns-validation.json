@@ -1,0 +1,17 @@
+{
+    "Changes": [
+        {
+            "Action": "UPSERT",
+            "ResourceRecordSet": {
+                "Name": "_a4716403e35302cd4dfb87ec4302a817.anush.com.",
+                "Type": "CNAME",
+                "TTL": 300,
+                "ResourceRecords": [
+                    {
+                        "Value": "_7c90f809cc7f4c5f2cb7404a502dc196.xlfgrmvvlj.acm-validations.aws."
+                    }
+                ]
+            }
+        }
+    ]
+}

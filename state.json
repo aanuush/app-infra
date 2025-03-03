@@ -1,0 +1,61 @@
+{
+    "version": 3,
+    "deployment": {
+        "manifest": {
+            "time": "2025-03-03T09:34:26.072292769Z",
+            "magic": "314f350dd99c0299d94a7042323e86b6762195d4bd5f498ffaabc785d7cdc963",
+            "version": "v3.153.1"
+        },
+        "secrets_providers": {
+            "type": "service",
+            "state": {
+                "url": "https://api.pulumi.com",
+                "owner": "anush",
+                "project": "app-infra",
+                "stack": "dev"
+            }
+        },
+        "metadata": {},
+        "resources": [
+            {
+                "urn": "urn:pulumi:dev::app-infra::pulumi:pulumi:Stack::app-infra-dev",
+                "custom": false,
+                "type": "pulumi:pulumi:Stack",
+                "created": "2025-03-03T08:57:19.922903307Z",
+                "modified": "2025-03-03T08:57:19.922903307Z",
+                "sourcePosition": "project:///node_modules/@pulumi/runtime/stack.ts#38,23"
+            },
+            {
+                "urn": "urn:pulumi:dev::app-infra::pulumi:providers:pulumi::default",
+                "custom": true,
+                "id": "8c9a7362-c0ad-4012-85c7-838f4c5d45d4",
+                "type": "pulumi:providers:pulumi",
+                "created": "2025-03-03T09:12:07.041086585Z",
+                "modified": "2025-03-03T09:12:07.041086585Z"
+            },
+            {
+                "urn": "urn:pulumi:dev::app-infra::pulumi:pulumi:StackReference::anush/common-infra/dev",
+                "custom": true,
+                "id": "anush/common-infra/dev",
+                "type": "pulumi:pulumi:StackReference",
+                "inputs": {
+                    "name": "anush/common-infra/dev"
+                },
+                "outputs": {
+                    "name": "anush/common-infra/dev",
+                    "outputs": {
+                        "certificateArn": "arn:aws:acm:us-east-1:528757806896:certificate/08258b57-b0a5-47a0-8147-f638c577407b",
+                        "domain": "anush.com",
+                        "hostedZoneId": "Z082398611Q9QW1MOQLS2"
+                    },
+                    "secretOutputNames": []
+                },
+                "parent": "urn:pulumi:dev::app-infra::pulumi:pulumi:Stack::app-infra-dev",
+                "external": true,
+                "provider": "urn:pulumi:dev::app-infra::pulumi:providers:pulumi::default::8c9a7362-c0ad-4012-85c7-838f4c5d45d4",
+                "modified": "2025-03-03T09:26:46.333121065Z",
+                "sourcePosition": "project:///index.ts#5,21"
+            }
+        ]
+    }
+}

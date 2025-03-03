@@ -1,0 +1,53 @@
+import * as pulumi from "@pulumi/pulumi";
+import * as aws from "@pulumi/aws";
+
+// Import outputs from common-infra
+const commonInfra = new pulumi.StackReference("anush/common-infra/dev");
+const certificateArn = commonInfra.getOutput("certificateArn");
+const domainName = commonInfra.getOutput("domain");
+
+// Create an S3 Bucket for hosting
+const siteBucket = new aws.s3.Bucket("siteBucket", {
+    website: { indexDocument: "index.html" }
+});
+
+// Upload an example index.html
+new aws.s3.BucketObject("index", {
+    bucket: siteBucket,
+    source: new pulumi.asset.FileAsset("index.html"),
+    contentType: "text/html"
+});
+
+// CloudFront Distribution
+const cloudfront = new aws.cloudfront.Distribution("cdn", {
+    enabled: true,
+    origins: [{
+        domainName: siteBucket.websiteEndpoint,
+        originId: "s3Origin"
+    }],
+    defaultCacheBehavior: {
+        targetOriginId: "s3Origin",
+        viewerProtocolPolicy: "redirect-to-https",
+        allowedMethods: ["GET", "HEAD"],
+        cachedMethods: ["GET", "HEAD"],
+        forwardedValues: {
+            queryString: false,
+            cookies: { forward: "none" },
+        }
+    },
+    viewerCertificate: {
+        acmCertificateArn: certificateArn,
+        sslSupportMethod: "sni-only"
+    },
+    restrictions: {   // ✅ Add this required property
+        geoRestriction: {
+            restrictionType: "none"
+	}
+    }
+});
+
+// Export CloudFront URL
+export const cloudfrontUrl = cloudfront.domainName;
+// Debugging output
+pulumi.log.info(`Certificate ARN: ${certificateArn}`);
+pulumi.log.info(`Domain Name: ${domainName}`);
